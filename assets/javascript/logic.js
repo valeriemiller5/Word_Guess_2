@@ -152,10 +152,10 @@ $(document).ready(function() {
         var img = $("<img style='width: 600px; margin-left: 10px'>");
         for(var i = 0; i < characters.length; i++) {
             if(newWord === characters[i].name) {
-                img.attr("src", `./assets/images/${characters[i].image} || https://https://attackofthefanboy.com/wp-content/uploads/2016/11/dragon-ball-super-shenron-760x428.jpg`);
+                img.attr("src", `./assets/images/${characters[i].image}`);
                 $("#image").append(img);
             } else if(remainingGuesses === 0){
-                img.attr("src", `./assets/images/${losingImage}`);
+                img.attr("src", `./assets/images/${losingImage.image}`);
                 $("#image").append(img);
             }
         }
