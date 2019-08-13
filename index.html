@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DBS Word Guess Game</title>
+    <!-- Bulma CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <!-- FontAwesome CDN -->
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <script src="./assets/javascript/logic.js"></script>
+</head>
+
+<body>
+    <section class="section">
+        <div class="container">
+            <h1 class="title">
+                <span><img id="logo" src="./assets/images/dbs_logo.png" alt="dbs_logo"></span> Word Guess
+            </h1>
+            <p class="subtitle">
+                Guess the name of this character!
+            </p>
+        </div>
+    </section>
+    <div class="container">
+        <div class="columns">
+            <div class="column is-half">
+                <div id="image"></div>
+            </div>
+            <div class="column is-half">
+                <h4>Secret Word:</h4>
+                <div id="word"></div>
+                <br>
+                <div>Remaining Guesses: <span id="remainGuess"></span></div>
+                <div>Wrong Letters: <span id="wrong"></span></div>
+                <div>Wins: <span id="wins">0</span></div>
+                <div>Losses: <span id="losses">0</span></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

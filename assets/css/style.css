@@ -1,0 +1,14 @@
+.title, .subtitle {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+}
+
+#logo {
+    width: 5%;
+}
+
+.column {
+    border-style: solid;
+    border-color: black;
+    margin: 5px;
+}
