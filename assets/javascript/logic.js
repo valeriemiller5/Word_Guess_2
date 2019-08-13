@@ -43,7 +43,6 @@ $(document).ready(function() {
     ];
     var newWord = "";
     var wordLength = 0
-    var input = [];
     var guess;
     var wrongLetters = [];
     var rightLetters = [];
@@ -52,27 +51,35 @@ $(document).ready(function() {
     var remainingGuesses = 10;
 
     function startGame(){
+        playerEntry();
         var randomWord = characters[Math.floor(Math.random() * characters.length)];
         newWord = randomWord.name;
         wordLength = newWord.length;
         console.log(`line 58 - random word: ${newWord}`);
         console.log(`line 59 - length of new word: ${wordLength}`);
         console.log(`line 60 - storeWord array: ${newWord}`);
-        for(var i = 0; i < newWord.length; i++) {
-            input.push(newWord[i].replace(/[a-z]/g, '_'));
+        for(var i = 0; i < wordLength; i++) {
+            rightLetters.push("_");
         };
-        console.log(`line 61 - input array, joined: ${input.join(" ")}`);
-        $("#word").html(input.join(" "));
+        console.log(`line 61 - input array, joined: ${rightLetters.join(" ")}`);
+        $("#word").html(rightLetters.join(" "));
     }
 
     startGame();
 
-    $(document).keyup(function(event) {
-        guess = event.key
-        console.log(guess);
-        playerChoices(guess);
-        playGame();
-    })
+    function playerEntry() {
+        $(document).keyup(function(event) {
+            guess = event.key
+            if(event.keyCode >= 65 && event.keyCode <= 90){
+                console.log(guess);
+                playerChoices(guess);
+                playGame();
+            } else {
+                alert("Entry must be a letter.");
+            }
+        })
+    }
+    
 
     function playerChoices(letter) {
         var correctLetter = false;
@@ -80,6 +87,7 @@ $(document).ready(function() {
             if(letter === newWord[i]) {
                 correctLetter = true;
             }
+        }
 
             if(correctLetter) {
                 for(var i = 0; i < wordLength; i++) {
@@ -89,13 +97,11 @@ $(document).ready(function() {
                     }
                 }
             } else if (wrongLetters.includes(letter)){
-                console.log("You have already guessed this letter");
+                alert("You have already guessed that letter.");
             } else {
                 wrongLetters.push(letter);
                 remainingGuesses--;
             }
-        }
-
     }
 
     function playGame() {
@@ -105,13 +111,26 @@ $(document).ready(function() {
         console.log(`Correct guesses to string: ${rightLetters.join("")}, Current word: ${newWord}`);
 
         if(rightLetters.join("") === newWord) {
+            $(document).off('keyup keydown keypress');
             wins++;
             $("#wins").html(wins);
         } else if(remainingGuesses === 0) {
+            $(document).off('keyup keydown keypress');
             losses++;
             $("#losses").html(losses);
         }
     }
+
+    $(".button").on("click", function() {
+        input = [];
+        wrongLetters = [];
+        rightLetters = [];
+        remainingGuesses = 10;
+        startGame();
+        $("#remainGuess").html(remainingGuesses);
+        $("#wrong").html(wrongLetters.join(", "));
+
+    });
 
     
     
