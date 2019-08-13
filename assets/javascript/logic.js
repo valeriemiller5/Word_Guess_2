@@ -75,7 +75,13 @@ $(document).ready(function() {
                 playerChoices(guess);
                 playGame();
             } else {
-                alert("Entry must be a letter.");
+                Swal.fire({
+                    position: "top-center",
+                    type: "warning",
+                    title: "Entry must be a letter.",
+                    showConfirmButton: false,
+                    timer: 2000
+                })
             }
         })
     }
@@ -97,7 +103,13 @@ $(document).ready(function() {
                     }
                 }
             } else if (wrongLetters.includes(letter)){
-                alert("You have already guessed that letter.");
+                Swal.fire({
+                    position: "top-center",
+                    type: "error",
+                    title: "You have already guessed that letter.",
+                    showConfirmButton: false,
+                    timer: 2000
+                })
             } else {
                 wrongLetters.push(letter);
                 remainingGuesses--;
@@ -114,10 +126,12 @@ $(document).ready(function() {
             $(document).off('keyup keydown keypress');
             wins++;
             $("#wins").html(wins);
+            showImage();
         } else if(remainingGuesses === 0) {
             $(document).off('keyup keydown keypress');
             losses++;
             $("#losses").html(losses);
+            showImage();
         }
     }
 
@@ -129,9 +143,21 @@ $(document).ready(function() {
         startGame();
         $("#remainGuess").html(remainingGuesses);
         $("#wrong").html(wrongLetters.join(", "));
+        $("#image").empty();
 
     });
 
-    
+    function showImage() {
+        var img = $("<img style='width: 600px; margin-left: 10px'>");
+        for(var i = 0; i < characters.length; i++) {
+            if(newWord === characters[i].name) {
+                img.attr("src", `./assets/images/${characters[i].image}`);
+                $("#image").append(img);
+            } else {
+                img.attr("src", "./assets/images/game_over.png");
+                $("#image").append(img);
+            }
+        }
+    }
     
 });
