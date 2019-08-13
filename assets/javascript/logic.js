@@ -153,7 +153,7 @@ $(document).ready(function() {
             if(newWord === characters[i].name) {
                 img.attr("src", `./assets/images/${characters[i].image}`);
                 $("#image").append(img);
-            } else {
+            } else if(remainingGuesses === 0){
                 img.attr("src", "./assets/images/game_over.png");
                 $("#image").append(img);
             }
