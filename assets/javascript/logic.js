@@ -41,6 +41,7 @@ $(document).ready(function() {
             image: "zeno.jpg"
         }
     ];
+    var losingImage = { name: "losingImage", image: "game_over.png"}
     var newWord = "";
     var wordLength = 0
     var guess;
@@ -150,13 +151,13 @@ $(document).ready(function() {
     function showImage() {
         var img = $("<img style='width: 600px; margin-left: 10px'>");
         for(var i = 0; i < characters.length; i++) {
-            if(remainingGuesses === 0){
-                img.attr("src", "./assets/images/game_over.png");
-                $("#image").append(img);
-            } else if(newWord === characters[i].name) {
+            if(newWord === characters[i].name) {
                 img.attr("src", `./assets/images/${characters[i].image} || https://https://attackofthefanboy.com/wp-content/uploads/2016/11/dragon-ball-super-shenron-760x428.jpg`);
                 $("#image").append(img);
-            };
+            } else if(remainingGuesses === 0){
+                img.attr("src", `./assets/images/${losingImage}`);
+                $("#image").append(img);
+            }
         }
     }
     
