@@ -56,13 +56,13 @@ $(document).ready(function() {
         var randomWord = characters[Math.floor(Math.random() * characters.length)];
         newWord = randomWord.name;
         wordLength = newWord.length;
-        console.log(`line 58 - random word: ${newWord}`);
-        console.log(`line 59 - length of new word: ${wordLength}`);
-        console.log(`line 60 - storeWord array: ${newWord}`);
+        // console.log(`line 58 - random word: ${newWord}`);
+        // console.log(`line 59 - length of new word: ${wordLength}`);
+        // console.log(`line 60 - storeWord array: ${newWord}`);
         for(var i = 0; i < wordLength; i++) {
             rightLetters.push("_");
         };
-        console.log(`line 61 - input array, joined: ${rightLetters.join(" ")}`);
+        // console.log(`line 61 - input array, joined: ${rightLetters.join(" ")}`);
         $("#word").html(rightLetters.join(" "));
     }
 
@@ -72,7 +72,7 @@ $(document).ready(function() {
         $(document).keyup(function(event) {
             guess = event.key
             if(event.keyCode >= 65 && event.keyCode <= 90){
-                console.log(guess);
+                // console.log(guess);
                 playerChoices(guess);
                 playGame();
             } else {
@@ -87,7 +87,6 @@ $(document).ready(function() {
         })
     }
     
-
     function playerChoices(letter) {
         var correctLetter = false;
         for(var i = 0; i < wordLength; i++) {
@@ -100,7 +99,7 @@ $(document).ready(function() {
                 for(var i = 0; i < wordLength; i++) {
                     if(newWord[i] === letter) {
                         rightLetters[i] = letter;
-                        console.log(`line 87 - rightLetters: ${rightLetters}`)
+                        // console.log(`line 87 - rightLetters: ${rightLetters}`)
                     }
                 }
             } else if (wrongLetters.includes(letter)){
@@ -121,7 +120,7 @@ $(document).ready(function() {
         $("#word").html(rightLetters.join(" "));
         $("#remainGuess").html(remainingGuesses);
         $("#wrong").html(wrongLetters.join(", "));
-        console.log(`Correct guesses to string: ${rightLetters.join("")}, Current word: ${newWord}`);
+        // console.log(`Correct guesses to string: ${rightLetters.join("")}, Current word: ${newWord}`);
 
         if(rightLetters.join("") === newWord) {
             $(document).off('keyup keydown keypress');
